@@ -1,5 +1,6 @@
 # java-tetris
 Repository for the development of Java Tetris. This project is for our CSCI 1082 (Object-Oriented Programming) class.
+VIEW PROJECT PLAN: https://github.com/anthonynarlock/java-tetris/blob/master/plan.txt
 
 Java TETRIS 
 By: Anthony Narlock, Matthew Sherohman, Kevin Lin
