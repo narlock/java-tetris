@@ -1,0 +1,68 @@
+Step-3: Pre-programming plan
+java-tetris
+By: Anthony Narlock, Matthew Sherohman, Kevin Lin
+
+Tetris
+------------
+Classes:
+
+State
+- Defines the GUI for a given game state
+A parent class that shares common instance variables with its child classes (GameState, MenuState, and PauseState).
+This class will be able to call methods in "Window" class to display a GUI on the screen depending on the current state.
+Has a static current_state integer, which defines which state the game is in.
+
+GameState
+- The actual game (derived from State)
+Will contain a timer to show that the game is in progress, this will also determine the rate at which pieces fall, and will be used for game frame rate
+Will contain a "board", "menu" and "scoreboard", and a pause option
+"Board": will contain a matrix that determines which elements are filled, uses variable from piece class
+"Menu": contains a next piece variable to display what piece is up next
+"scoreboard" - contains a current score, current counter for every piece, and a current level indicator (ALL of which will be saved when a high score is saved to the program)
+"Pause": Changes the state to pauseGame
+
+MenuState
+- The main menu and initial state of game (derived from State)
+The GUI for the main menu will be displayed upon launch of the program. This will also be displayed after a "Game Over" screen is shown so the user can expect to replay the game after it is over.
+Will contain "buttons" for "settings", "start game", "exit", and "controls"
+	"settings": allows the user to change the level they start on, change color pallete of game, change background image?
+	"start game": will change the state to "GameState" and will start the game
+	"exit" Closes the program.
+	"controls": displays the controls of the game (this might just be implemented inside of the GUI and may not exist at all) SEE: allows the user to modify their controls
+Will show a top 3 highScores table
+
+PauseState
+- The pause menu that can be accessed when GameState is active (derived from State)
+Stops the game timer and freezes the game
+Contains a "pause" text box and a resume option, which changes the state back to GameState
+
+KeyManager
+- Manages input from the keyboard
+Allows the game to access theme
+
+Window
+- Creates a JFrame and Canvas for the game (GUI itself)
+The "Graphics Panel" for Tetris
+Will contain a JFrame and canvas to be painted upon.
+
+Assets
+- Initializes all of the assests for the game, pictures.
+Will hold the information for all of the images in the game, mainly the GUI images that will be used later. (e.g. Tile.png will hold the image of a single tile)
+
+Piece
+- Defines the tetris piece, and next piece
+Creates "pieces that are 2D arrays containing integers. Inside of each element contains an integer of 0, 1, 2, or 3.
+0 representing clear, or not full, meaning that a piece can be put in it and that specific spot is NOT filled.
+1, 2, 3 represents a filled index. Depending on what number the filled index is, the color of the piece will be determined.
+
+Board
+- The game board
+A 2 dimensional array that will represent the board itself, this information will be sent and updated by GUI. 
+Once a Piece class's spot is determined on the board, the board itself will update.
+When a board has an entire "line" of filled in index values, the board will clear that line, moved every above its y value down and continue game.
+
+Driver
+- Executes program
+
+**Other notes:
+When start game is first initialized, the game will show the user how to play, creating a new window that will show the current controls set to the game. This window will appear until the switch is turned off by the user.
