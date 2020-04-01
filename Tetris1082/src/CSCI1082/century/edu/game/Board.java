@@ -1,7 +1,6 @@
 package CSCI1082.century.edu.game;
 
 public class Board {
-	//Initialzes board
 	private int[][] board;
 	
 	private Piece nextPiece = Piece.getRandomPiece();
