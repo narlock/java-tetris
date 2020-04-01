@@ -1,5 +1,14 @@
 package CSCI1082.century.edu.state;
 
-public class MenuState {
+import java.awt.Graphics;
 
+public class MenuState extends State{
+
+	public void render(Graphics g) {
+		
+	}
+	
+	public MenuState() {
+		
+	}
 }

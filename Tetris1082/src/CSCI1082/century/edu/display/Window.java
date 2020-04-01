@@ -8,8 +8,8 @@ import javax.swing.JFrame;
 
 public class Window{
 
-	JFrame frame;
-	Canvas canvas;
+	private JFrame frame;
+	private Canvas canvas;
 	
 	private int width;
 	private int height;
@@ -51,9 +51,12 @@ public class Window{
 		/*Makes it so the canvas is not focusable,
 		 * meaning user input will go to the frame*/
 		canvas.setFocusable(false);	
+		
+		frame.add(canvas);
+		frame.pack();
 	}
 	
-	public static Canvas getCanvas() {
+	public Canvas getCanvas() {
 		return canvas;
 	}
 
