@@ -2,10 +2,11 @@ package CSCI1082.century.edu.display;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.awt.Graphics;
 
 import javax.swing.JFrame;
 
-public class Window {
+public class Window{
 
 	JFrame frame;
 	Canvas canvas;
@@ -49,10 +50,11 @@ public class Window {
 		canvas.setMinimumSize(new Dimension(width,height));
 		/*Makes it so the canvas is not focusable,
 		 * meaning user input will go to the frame*/
-		canvas.setFocusable(false);
-		
-		
-		
+		canvas.setFocusable(false);	
+	}
+	
+	public static Canvas getCanvas() {
+		return canvas;
 	}
 
 }
