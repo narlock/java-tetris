@@ -10,7 +10,7 @@ public class Board {
 		nextPiece = Piece.randomPiece();
 		for(int i = 0; i < nextPiece.length; i++)
 			for(int j = 0; j < nextPiece[i].length; j++)
-				board[i+22][j+1] = nextPiece[i][j];
+				board[i][j] = nextPiece[i][j];
 	}
 	
 	public void checkRows() {

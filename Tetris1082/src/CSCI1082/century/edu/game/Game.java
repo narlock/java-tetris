@@ -29,7 +29,7 @@ public class Game{
 	}
 	
 	public void init(){
-		gameState = new GameState();
+		gameState = new GameState(width, height);
 		menuState = new MenuState();
 		State.setCurrentState(gameState);
 		running = true;
@@ -61,7 +61,7 @@ public class Game{
 	public void run() {
 		
 		try {
-			Thread.sleep(100);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -75,7 +75,7 @@ public class Game{
 		
 		
 	}
-
+	
 	public Game(int width, int height, String title) {
 		this.width = width;
 		this.height = height;
