@@ -32,6 +32,11 @@ public class Game{
 		gameState = new GameState();
 		menuState = new MenuState();
 		State.setCurrentState(gameState);
+		running = true;
+	}
+	
+	public void tick() {
+		
 	}
 	
 	public void render() {
@@ -55,10 +60,17 @@ public class Game{
 	
 	public void run() {
 		
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		init();
 		
 		while(running == true) {
 			render();
+			tick();
 		}
 		
 		
@@ -68,8 +80,6 @@ public class Game{
 		this.width = width;
 		this.height = height;
 		window = new Window(width,height,title);
-		running = true;
-		run();
 	}
 	
 }
