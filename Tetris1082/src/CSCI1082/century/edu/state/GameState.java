@@ -56,6 +56,7 @@ public class GameState extends State{
 		b = new Board();
 		this.rows = b.getRows();
 		this.columns = b.getColumns();
+
 		size = 25;
 	}
 }
