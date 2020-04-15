@@ -2,7 +2,11 @@ package CSCI1082.century.edu.state;
 
 import java.awt.Graphics;
 
+import CSCI1082.century.edu.utilities.Handler;
+
 public abstract class State{
+	protected Handler h;
+	
 	private static State currentState = null;
 	
 	public static State getCurrentState() {
@@ -14,4 +18,8 @@ public abstract class State{
 	}
 	
 	public abstract void paint(Graphics g);
+	
+	public State(Handler h) {
+		this.h = h;
+	}
 }

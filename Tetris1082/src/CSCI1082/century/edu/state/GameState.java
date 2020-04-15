@@ -4,16 +4,16 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 import CSCI1082.century.edu.game.Board;
+import CSCI1082.century.edu.utilities.Handler;
 
 public class GameState extends State{
 	private Board b;
 	
 	private int size;
-	private int width;
-	private int height;
 	private int rows;
 	private int columns;
 	public void paint(Graphics g) {
+		
 		for(int i = 0; i < rows; i++)
 			for(int j = 0; j < columns; j++) {
 				switch(b.getElement(i, j)) {
@@ -42,26 +42,20 @@ public class GameState extends State{
 						g.setColor(Color.WHITE);
 						break;
 				}
-				g.fillRect((width/3)+j*size, (height-(size*rows))/2-1+i*size, size, size);
+				g.fillRect((640-(size*columns))+j*size, i*size, size, size);
 			}
+		
 	}
 	
 	private void getInput() {
 		
 	}
 	
-	public GameState(int width, int height) {
-		super();
+	public GameState(Handler h) {
+		super(h);
 		b = new Board();
-		b.addPiece();
-		
-		this.width = width;
-		this.height = height;
 		this.rows = b.getRows();
 		this.columns = b.getColumns();
-		
-		/*Will Determine what size should be so that 
-		 * the drawn Board fits in the game window*/
-		size = width/(b.getColumns()*3);
+		size = 25;
 	}
 }

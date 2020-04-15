@@ -7,16 +7,17 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JPanel;
 
 import CSCI1082.century.edu.display.Window;
+import CSCI1082.century.edu.input.KeyManager;
 import CSCI1082.century.edu.state.GameState;
 import CSCI1082.century.edu.state.MenuState;
 import CSCI1082.century.edu.state.State;
+import CSCI1082.century.edu.utilities.Handler;
 
 public class Game extends JPanel{
 	//Window
 	private Window window;
 	 private int width;
 	 private int height;
-	 
 	 
 	//Render
 	private Graphics g;
@@ -25,15 +26,20 @@ public class Game extends JPanel{
 	private State gameState;
 	private State menuState;
 	
-	boolean running = false; 
+	//Inputs
+	private KeyManager km;
+	
+	//Misc
+	boolean running = false;
+	private Handler h;
 	
 	public Window getWindow() {
 		return window;
 	}
 	
 	public void init(){
-		gameState = new GameState(width, height);
-		menuState = new MenuState();
+		gameState = new GameState(h);
+		menuState = new MenuState(h);
 		State.setCurrentState(gameState);
 		running = true;
 	}
@@ -64,6 +70,10 @@ public class Game extends JPanel{
 		}
 		
 		
+	}
+	
+	public KeyManager getKeyManager() {
+		return km;
 	}
 	
 	public Game(int width, int height) {
