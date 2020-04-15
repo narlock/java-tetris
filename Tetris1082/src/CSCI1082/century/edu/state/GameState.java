@@ -9,36 +9,59 @@ public class GameState extends State{
 	private Board b;
 	
 	private int size;
-	
-	public void render(Graphics g) {
-		
-		int[][] tmp = b.getBoard();
-		
-		for(int i = 0; i < tmp.length; i++)
-			for(int j = 0; j < tmp[i].length; j++) {
-				if(tmp[i][j] == 1) {
-					g.setColor(Color.WHITE);
-					g.fillRect(j*size, i*size, size, size);
-				}else {
-					g.setColor(Color.BLACK);
-					g.fillRect(j*size, i*size, size, size);
+	private int width;
+	private int height;
+	private int rows;
+	private int columns;
+	public void paint(Graphics g) {
+		for(int i = 0; i < rows; i++)
+			for(int j = 0; j < columns; j++) {
+				switch(b.getElement(i, j)) {
+					case 0: 
+						g.setColor(Color.black);
+						break;
+					case 1: 
+						g.setColor(Color.red);
+						break;
+					case 2:
+						g.setColor(Color.cyan);
+						break;
+					case 3:
+						g.setColor(Color.orange);
+						break;
+					case 4:
+						g.setColor(Color.GREEN);
+						break;
+					case 5:
+						g.setColor(Color.MAGENTA);
+						break;
+					case 6:
+						g.setColor(Color.PINK);
+						break;
+					default:
+						g.setColor(Color.WHITE);
+						break;
 				}
+				g.fillRect((width/3)+j*size, (height-(size*rows))/2-1+i*size, size, size);
 			}
 	}
 	
+	private void getInput() {
+		
+	}
+	
 	public GameState(int width, int height) {
+		super();
 		b = new Board();
 		b.addPiece();
 		
+		this.width = width;
+		this.height = height;
+		this.rows = b.getRows();
+		this.columns = b.getColumns();
+		
 		/*Will Determine what size should be so that 
 		 * the drawn Board fits in the game window*/
-		int tmpBoardWidth = (width/b.getColumns());
-		int tmpBoardHeight = (height/b.getRows());
-		if(tmpBoardWidth<tmpBoardHeight)
-			size = tmpBoardWidth;
-		else
-			size = tmpBoardHeight;
-		
-		
+		size = width/(b.getColumns()*3);
 	}
 }

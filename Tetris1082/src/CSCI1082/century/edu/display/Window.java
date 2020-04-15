@@ -1,15 +1,15 @@
 package CSCI1082.century.edu.display;
 
-import java.awt.Canvas;
-import java.awt.Dimension;
-import java.awt.Graphics;
+import java.awt.Color;
 
 import javax.swing.JFrame;
+
+import CSCI1082.century.edu.game.Game;
 
 public class Window{
 
 	private JFrame frame;
-	private Canvas canvas;
+	private Game game;
 	
 	private int width;
 	private int height;
@@ -39,25 +39,16 @@ public class Window{
 		frame.setVisible(true);
 		frame.setResizable(false);
 		
-		/*Creates a Canvas
-		 * A Canvas creates a blank rectangle that can be drawn on
-		 * The Canvas Class can also detect user input*/
-		canvas = new Canvas();
-		/*Sets the Preferred, Maximum, and Minimum Sizes so that
-		 * the Canvas cannot be a different size than the frame*/
-		canvas.setPreferredSize(new Dimension(width,height));
-		canvas.setMaximumSize(new Dimension(width,height));
-		canvas.setMinimumSize(new Dimension(width,height));
-		/*Makes it so the canvas is not focusable,
-		 * meaning user input will go to the frame*/
-		canvas.setFocusable(false);	
+		game = new Game(width-17,height-40);
 		
-		frame.add(canvas);
-		frame.pack();
+		frame.add(game);
 	}
 	
-	public Canvas getCanvas() {
-		return canvas;
+	public Game getGame() {
+		return game;
+	}
+	public JFrame getJFrame() {
+		return frame;
 	}
 
 }

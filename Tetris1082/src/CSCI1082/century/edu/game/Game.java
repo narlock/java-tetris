@@ -1,21 +1,24 @@
 package CSCI1082.century.edu.game;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+
+import javax.swing.JPanel;
 
 import CSCI1082.century.edu.display.Window;
 import CSCI1082.century.edu.state.GameState;
 import CSCI1082.century.edu.state.MenuState;
 import CSCI1082.century.edu.state.State;
 
-public class Game{
+public class Game extends JPanel{
 	//Window
 	private Window window;
 	 private int width;
 	 private int height;
 	 
+	 
 	//Render
-	private BufferStrategy bs;
 	private Graphics g;
 	 
 	//States
@@ -39,29 +42,16 @@ public class Game{
 		
 	}
 	
-	public void render() {
-		//BufferStrategy Init
-		bs = window.getCanvas().getBufferStrategy();
-		if(bs == null) {
-			window.getCanvas().createBufferStrategy(3);
-			return;
-		}
-		g = bs.getDrawGraphics();
-		g.clearRect(0, 0, width, height);
-		
+	public void paint(Graphics g) {
 		//Draw
 		if(State.getCurrentState() != null)
-			State.getCurrentState().render(g);
-		
-		//Show Drawing and Dispose Drawing
-		bs.show();
-		g.dispose();
+			State.getCurrentState().paint(g);
 	}
 	
 	public void run() {
 		
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -69,17 +59,18 @@ public class Game{
 		init();
 		
 		while(running == true) {
-			render();
+			repaint();
 			tick();
 		}
 		
 		
 	}
 	
-	public Game(int width, int height, String title) {
+	public Game(int width, int height) {
 		this.width = width;
 		this.height = height;
-		window = new Window(width,height,title);
+		this.setSize(width, height);
+		this.setBackground(Color.BLUE);
 	}
 	
 }

@@ -7,10 +7,10 @@ public class Board {
 	private int[][] nextPiece;
 	
 	public void addPiece() {
-		nextPiece = Piece.randomPiece();
 		for(int i = 0; i < nextPiece.length; i++)
 			for(int j = 0; j < nextPiece[i].length; j++)
 				board[i][j] = nextPiece[i][j];
+		nextPiece = Piece.randomPiece();
 	}
 	
 	public void checkRows() {
@@ -31,7 +31,6 @@ public class Board {
 	}
 	
 	public void tick() {
-		checkRows();
 	}
 
 	public int getColumns() {
@@ -42,10 +41,16 @@ public class Board {
 		return rows;
 	}
 	
+	public int getElement(int x, int y) {
+		return board[x][y];
+	}
+	
 	public Board() {
 		columns = 10;
 		rows = 24;
 		board = new int[24][10];
+		
+		nextPiece = Piece.randomPiece();
 	}
 	
 }
