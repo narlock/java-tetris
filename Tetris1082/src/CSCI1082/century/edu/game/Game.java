@@ -7,6 +7,8 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JPanel;
 
 import CSCI1082.century.edu.display.Window;
+import CSCI1082.century.edu.image.Assets;
+import CSCI1082.century.edu.input.MouseManager;
 import CSCI1082.century.edu.state.GameState;
 import CSCI1082.century.edu.state.MenuState;
 import CSCI1082.century.edu.state.State;
@@ -25,6 +27,9 @@ public class Game extends JPanel{
 	private State gameState;
 	private State menuState;
 	
+	//Listeners
+	private MouseManager mouseManager;
+	
 	boolean running = false; 
 	
 	public Window getWindow() {
@@ -32,9 +37,10 @@ public class Game extends JPanel{
 	}
 	
 	public void init(){
+		Assets.init();
 		gameState = new GameState(width, height);
 		menuState = new MenuState();
-		State.setCurrentState(gameState);
+		State.setCurrentState(menuState);
 		running = true;
 	}
 	

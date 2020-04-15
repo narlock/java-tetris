@@ -62,6 +62,7 @@ public class GameState extends State{
 		
 		/*Will Determine what size should be so that 
 		 * the drawn Board fits in the game window*/
-		size = width/(b.getColumns()*3);
+		//size = width/(b.getColumns()*3);
+		size = 25;
 	}
 }
