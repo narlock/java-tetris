@@ -12,6 +12,9 @@ public class GameState extends State{
 	private int size;
 	private int rows;
 	private int columns;
+	private int level;
+	private double speed;
+	private int counter;
 	public void paint(Graphics g) {
 		
 		for(int i = 0; i < rows; i++)
@@ -48,7 +51,11 @@ public class GameState extends State{
 	}
 	
 	private void getInput() {
-		
+		//get keyboard input from handler.getKeyManager();
+	}
+	
+	public void tick() {
+		//tick the game to make pieces fall using counter, speed, and level
 	}
 	
 	public GameState(Handler h) {
@@ -58,5 +65,8 @@ public class GameState extends State{
 		this.rows = b.getRows();
 		this.columns = b.getColumns();
 		size = 25;
+		counter = 0;
+		level = 1;
+		speed = 0.01;
 	}
 }
