@@ -42,7 +42,7 @@ public class GameState extends State{
 						g.setColor(Color.WHITE);
 						break;
 				}
-				g.fillRect((640-(size*columns))+j*size, i*size, size, size);
+				g.fillRect((640-(size*columns))+j*size, 100+i*size, size, size);
 			}
 		
 	}
@@ -54,9 +54,9 @@ public class GameState extends State{
 	public GameState(Handler h) {
 		super(h);
 		b = new Board();
+		b.addPiece();
 		this.rows = b.getRows();
 		this.columns = b.getColumns();
-
 		size = 25;
 	}
 }

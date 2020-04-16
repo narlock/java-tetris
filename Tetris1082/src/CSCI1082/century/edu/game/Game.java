@@ -8,8 +8,6 @@ import javax.swing.JPanel;
 
 import CSCI1082.century.edu.display.Window;
 import CSCI1082.century.edu.input.KeyManager;
-import CSCI1082.century.edu.image.Assets;
-import CSCI1082.century.edu.input.MouseManager;
 import CSCI1082.century.edu.state.GameState;
 import CSCI1082.century.edu.state.MenuState;
 import CSCI1082.century.edu.state.State;
@@ -28,19 +26,12 @@ public class Game extends JPanel{
 	private State gameState;
 	private State menuState;
 	
-
 	//Inputs
 	private KeyManager km;
 	
 	//Misc
 	boolean running = false;
 	private Handler h;
-	
-	//Listeners
-	private MouseManager mouseManager;
-	private KeyManager km;
-	
-	boolean running = false; 
 	
 	public Window getWindow() {
 		return window;
@@ -50,10 +41,6 @@ public class Game extends JPanel{
 		gameState = new GameState(h);
 		menuState = new MenuState(h);
 		State.setCurrentState(gameState);
-		Assets.init();
-		gameState = new GameState(width, height);
-		menuState = new MenuState();
-		State.setCurrentState(menuState);
 		running = true;
 	}
 	
@@ -75,7 +62,6 @@ public class Game extends JPanel{
 			e.printStackTrace();
 		}
 		
-		init();
 		
 		while(running == true) {
 			repaint();
@@ -92,8 +78,8 @@ public class Game extends JPanel{
 	public Game(int width, int height) {
 		this.width = width;
 		this.height = height;
-		this.setSize(width, height);
-		this.setBackground(Color.BLUE);
+		this.setSize(width, height);;
+		init();
 	}
 	
 }
