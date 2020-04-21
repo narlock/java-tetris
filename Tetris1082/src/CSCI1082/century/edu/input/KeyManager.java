@@ -5,21 +5,21 @@ import java.awt.event.KeyListener;
 
 public class KeyManager implements KeyListener{
 
-	private boolean keys[];
-	public boolean up;
-	public boolean down;
-	public boolean left;
-	public boolean right;
+	private boolean[] keys;
+	public boolean w;
+	public boolean s;
+	public boolean a;
+	public boolean d;
 	
 	public KeyManager(){
 		keys = new boolean[256];
 	}
 	
 	public void tick() {
-		up=keys[KeyEvent.VK_W];
-		down=keys[KeyEvent.VK_S];
-		left=keys[KeyEvent.VK_A];
-		right=keys[KeyEvent.VK_D];
+		w=keys[KeyEvent.VK_W];
+		s=keys[KeyEvent.VK_S];
+		a=keys[KeyEvent.VK_A];
+		d=keys[KeyEvent.VK_D];
 	}
 	
 	public void keyTyped(KeyEvent e) {
@@ -33,6 +33,7 @@ public class KeyManager implements KeyListener{
 
 	public void keyReleased(KeyEvent e) {
 		keys[e.getKeyCode()]=false;
+		System.out.println("Released!");
 	}
 
 }

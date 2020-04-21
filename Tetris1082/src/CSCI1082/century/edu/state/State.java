@@ -18,6 +18,7 @@ public abstract class State{
 	}
 	
 	public abstract void paint(Graphics g);
+	public abstract void tick();
 	
 	public State(Handler h) {
 		this.h = h;

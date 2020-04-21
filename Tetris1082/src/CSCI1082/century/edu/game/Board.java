@@ -4,6 +4,7 @@ public class Board {
 	private int[][] board;
 	private int columns,rows;
 	
+	/*
 	private int[][] nextPiece;
 	
 	public void addPiece() {
@@ -11,6 +12,13 @@ public class Board {
 			for(int j = 0; j < nextPiece[i].length; j++)
 				board[i][j] = nextPiece[i][j];
 		nextPiece = Piece.randomPiece();
+	}
+	*/
+
+	public void addPiece(int posX, int posY, int[][] piece) {
+		for(int i = 0; i < piece.length; i++)
+			for(int j = 0; j < piece[i].length; j++)
+				board[i][j] = piece[i][j];
 	}
 	
 	public void checkRows() {
@@ -49,8 +57,6 @@ public class Board {
 		columns = 10;
 		rows = 24;
 		board = new int[24][10];
-		
-		nextPiece = Piece.randomPiece();
 	}
 	
 }

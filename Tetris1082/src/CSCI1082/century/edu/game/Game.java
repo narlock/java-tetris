@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 
 import CSCI1082.century.edu.display.Window;
 import CSCI1082.century.edu.input.KeyManager;
+import CSCI1082.century.edu.input.MouseManager;
 import CSCI1082.century.edu.state.GameState;
 import CSCI1082.century.edu.state.MenuState;
 import CSCI1082.century.edu.state.State;
@@ -28,6 +29,7 @@ public class Game extends JPanel{
 	
 	//Inputs
 	private KeyManager km;
+	private MouseManager mm;
 	
 	//Misc
 	boolean running = false;
@@ -38,14 +40,22 @@ public class Game extends JPanel{
 	}
 	
 	public void init(){
+		h = new Handler(this);
+		
+		
+		
 		gameState = new GameState(h);
 		menuState = new MenuState(h);
 		State.setCurrentState(gameState);
+		
 		running = true;
 	}
 	
 	public void tick() {
+		km.tick();
 		
+		if(State.getCurrentState() != null)
+			State.getCurrentState().tick();
 	}
 	
 	public void paint(Graphics g) {
@@ -56,16 +66,16 @@ public class Game extends JPanel{
 	
 	public void run() {
 		
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-		
+		init();
 		
 		while(running == true) {
-			repaint();
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			tick();
+			repaint();
 		}
 		
 		
@@ -78,8 +88,14 @@ public class Game extends JPanel{
 	public Game(int width, int height) {
 		this.width = width;
 		this.height = height;
-		this.setSize(width, height);;
-		init();
+		this.setSize(width, height);
+
+		km = new KeyManager();
+		
+		this.setFocusable(true);
+		this.requestFocus();
+
+		this.addKeyListener(km);
 	}
 	
 }

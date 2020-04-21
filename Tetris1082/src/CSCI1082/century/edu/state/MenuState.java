@@ -19,4 +19,10 @@ public class MenuState extends State{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void tick() {
+		// TODO Auto-generated method stub
+		
+	}
 }
