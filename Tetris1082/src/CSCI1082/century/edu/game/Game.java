@@ -43,6 +43,7 @@ public class Game extends JPanel{
 	public void init(){
 		h = new Handler(this);
 		Assets.init();
+
 		
 		gameState = new GameState(h);
 		menuState = new MenuState(h);
