@@ -20,8 +20,10 @@ public class GameState extends State{
 	
 	private int piecePosX;
 	private int piecePosY;
-	private int boardPosX = (640-(size*columns));
-	private int boardPosY = 50;
+	private int boardPosX;
+	private int boardPosY;
+	private int boardSizeX;
+	private int boardSizeY;
 	
 	private boolean w;
 	private boolean a;
@@ -32,7 +34,7 @@ public class GameState extends State{
 	
 	public void paint(Graphics g) {
 		g.drawImage(Assets.gameBackground, 0, 0, null);
-		
+
 		//Draw the Board
 		for(int i = 0; i < rows; i++)
 			for(int j = 0; j < columns; j++) {
@@ -131,9 +133,14 @@ public class GameState extends State{
 		this.rows = b.getRows();
 		this.columns = b.getColumns();
 		size = 25;
-		counter = 0;
+		counter = 10;
 		level = 1;
 		speed = 0.01;
+		
+		boardSizeX = size * columns;
+		boardSizeY = size * rows;
+		boardPosX = (h.getGame().getWidth()/2) - (boardSizeX/2);
+		boardPosY = (h.getGame().getHeight()/2) - (boardSizeY/2);
 		
 		nextPiece = Piece.randomPiece();
 	}
