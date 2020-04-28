@@ -42,8 +42,6 @@ public class Game extends JPanel{
 	public void init(){
 		h = new Handler(this);
 		
-		
-		
 		gameState = new GameState(h);
 		menuState = new MenuState(h);
 		State.setCurrentState(gameState);
