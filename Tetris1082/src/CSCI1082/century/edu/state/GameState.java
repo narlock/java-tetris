@@ -5,6 +5,7 @@ import java.awt.Graphics;
 
 import CSCI1082.century.edu.game.Board;
 import CSCI1082.century.edu.game.Piece;
+import CSCI1082.century.edu.image.Assets;
 import CSCI1082.century.edu.utilities.Handler;
 
 public class GameState extends State{
@@ -32,8 +33,8 @@ public class GameState extends State{
 	private int[][] nextPiece;
 	
 	public void paint(Graphics g) {
-		//Draw the Background
-		
+		g.drawImage(Assets.gameBackground, 0, 0, null);
+
 		//Draw the Board
 		for(int i = 0; i < rows; i++)
 			for(int j = 0; j < columns; j++) {
