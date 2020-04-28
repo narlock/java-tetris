@@ -121,10 +121,9 @@ public class GameState extends State{
 	
 	public void tick() {
 		
-		//tick the game to make pieces fall using counter, speed, and level
 		getInput();
 		
-		if(counter == 10) {
+		if(counter == 15) {
 			if(piecePosY < rows - (nextPiece[0].length-1))
 				piecePosY++;
 			counter = 0;
