@@ -30,7 +30,7 @@ public class Window{
 		frame.setSize(width, height);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
-		frame.setResizable(false);
+		//frame.setResizable(false);
 		
 		game = new Game(width-17,height-40);
 		

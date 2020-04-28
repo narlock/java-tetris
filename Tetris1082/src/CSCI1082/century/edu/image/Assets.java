@@ -2,6 +2,8 @@ package CSCI1082.century.edu.image;
 
 import java.awt.image.BufferedImage;
 
+import CSCI1082.century.edu.utilities.ImageLoader;
+
 public class Assets {
 	
 	public static BufferedImage mainMenuBackground;
@@ -11,6 +13,7 @@ public class Assets {
 	public static BufferedImage piece;
 	
 	public static void init() {
-		
+		mainMenuBackground = ImageLoader.loadImage("/textures/menuStateBg.png");
+		gameBackground = ImageLoader.loadImage("/textures/gameStateBg.png");
 	}
 }
