@@ -4,21 +4,11 @@ public class Board {
 	private int[][] board;
 	private int columns,rows;
 	
-	/*
-	private int[][] nextPiece;
-	
-	public void addPiece() {
-		for(int i = 0; i < nextPiece.length; i++)
-			for(int j = 0; j < nextPiece[i].length; j++)
-				board[i][j] = nextPiece[i][j];
-		nextPiece = Piece.randomPiece();
-	}
-	*/
-
 	public void addPiece(int posX, int posY, int[][] piece) {
 		for(int i = 0; i < piece.length; i++)
 			for(int j = 0; j < piece[i].length; j++)
-				board[i][j] = piece[i][j];
+				if(piece[i][j] != 0)
+					board[i + posX][j + posY] = piece[i][j];
 	}
 	
 	public void checkRows() {

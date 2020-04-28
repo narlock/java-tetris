@@ -5,11 +5,14 @@ import java.awt.Graphics;
 
 import CSCI1082.century.edu.game.Board;
 import CSCI1082.century.edu.game.Piece;
+import CSCI1082.century.edu.game.ScoreCounter;
 import CSCI1082.century.edu.image.Assets;
 import CSCI1082.century.edu.utilities.Handler;
 
 public class GameState extends State{
 	private Board b;
+	
+	private ScoreCounter sc;
 	
 	private int size;
 	private int rows;
@@ -31,6 +34,7 @@ public class GameState extends State{
 	private boolean d;
 	
 	private int[][] nextPiece;
+	private int[][] currentPiece;
 	
 	public void paint(Graphics g) {
 		g.drawImage(Assets.gameBackground, 0, 0, null);
@@ -69,9 +73,9 @@ public class GameState extends State{
 		
 		//Draw the Piece
 		
-		for(int i = piecePosY; i < nextPiece.length + piecePosY; i++)
-			for(int j = piecePosX; j < nextPiece[0].length + piecePosX; j++) {
-				switch(nextPiece[i-piecePosY][j-piecePosX]) {
+		for(int i = piecePosY; i < currentPiece.length + piecePosY; i++)
+			for(int j = piecePosX; j < currentPiece[0].length + piecePosX; j++) {
+				switch(currentPiece[i-piecePosY][j-piecePosX]) {
 				case 0: 
 					continue;
 				case 1: 
@@ -98,6 +102,7 @@ public class GameState extends State{
 				}
 				g.fillRect(boardPosX + j*size, boardPosY + i*size, size, size);
 			}
+		
 		System.out.println("X: " + piecePosX);
 		System.out.println("Y: " + piecePosY);
 	}
@@ -105,16 +110,16 @@ public class GameState extends State{
 	private void getInput() {
 		//get keyboard input from handler.getKeyManager();
 		
-		if(h.getKeyManager().w && piecePosY > 0)
-			piecePosY--;
+		//if(h.getKeyManager().w && piecePosY > 0)
+		//	piecePosY--;
 			
-		if(h.getKeyManager().a && piecePosX > 0)
+		if(h.getKeyManager().a && (piecePosX > 0))
 			piecePosX--;
 		
-		if(h.getKeyManager().s && piecePosY < rows - (nextPiece[0].length-1))
-			piecePosY++;
+		//if()
+		//	piecePosY++;
 		
-		if(h.getKeyManager().d && piecePosX < columns - (nextPiece.length+1))
+		if(h.getKeyManager().d && piecePosX < columns - (currentPiece.length+1))
 			piecePosX++;
 		
 	}
@@ -123,12 +128,45 @@ public class GameState extends State{
 		
 		getInput();
 		
-		if(counter == 15) {
-			if(piecePosY < rows - (nextPiece[0].length-1))
-				piecePosY++;
+		if((checkBottom()) || (piecePosY > (rows - currentPiece[0].length))) {
+			
+			b.addPiece(piecePosY, piecePosX, currentPiece);
+			currentPiece = nextPiece;
+			nextPiece = Piece.randomPiece();
+			
+			piecePosX = 0;
+			piecePosY = 0;
+		}
+		
+		if(counter >= 2) {
+
+			piecePosY++;
 			counter = 0;
 		}
+		
 		counter++;
+	}
+	
+	private boolean checkLeft() {
+		
+	}
+	
+	private boolean checkRight() {
+		
+	}
+	
+	private boolean checkBottom() {
+		if(piecePosY == 22)
+			return true;
+
+		for(int j = 0; j < currentPiece[0].length; j++) {
+			if(b.getElement(piecePosY+currentPiece.length, piecePosX+j) != 0) {
+				System.out.println("loop");
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	public GameState(Handler h) {
@@ -147,6 +185,7 @@ public class GameState extends State{
 		boardPosX = (h.getGame().getWidth()/2) - (boardSizeX/2);
 		boardPosY = (h.getGame().getHeight()/2) - (boardSizeY/2);
 		
+		currentPiece = Piece.randomPiece();
 		nextPiece = Piece.randomPiece();
 	}
 }
