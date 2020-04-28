@@ -74,6 +74,7 @@ public class Game extends JPanel{
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			this.requestFocus();
 			tick();
 			repaint();
 		}
