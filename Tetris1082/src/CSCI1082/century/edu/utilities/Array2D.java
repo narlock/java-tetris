@@ -2,6 +2,16 @@ package CSCI1082.century.edu.utilities;
 
 public class Array2D {
 	
+	public static int[][] rotateClockwise(int arr2D){
+		
+		return arr2D;
+	}
+	
+	public static int[][] rotateCounterClockwise(int arr2D){
+		
+		return arr2D;
+	}
+	
 	public static int[] getBottomElement(int[][] arr2D, int column) {
 		for(int i = arr2D.length-1; i >= 0; i--)
 			if(arr2D[i][column] != 0) {

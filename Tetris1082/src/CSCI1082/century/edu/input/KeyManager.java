@@ -10,6 +10,8 @@ public class KeyManager implements KeyListener{
 	public boolean s;
 	public boolean a;
 	public boolean d;
+	public boolean q;
+	public boolean e;
 	
 	public KeyManager(){
 		keys = new boolean[256];
@@ -20,6 +22,8 @@ public class KeyManager implements KeyListener{
 		s=keys[KeyEvent.VK_S];
 		a=keys[KeyEvent.VK_A];
 		d=keys[KeyEvent.VK_D];
+		q=keys[KeyEvent.VK_Q];
+		e=keys[KeyEvent.VK_E];
 	}
 	
 	public void keyTyped(KeyEvent e) {

@@ -123,6 +123,11 @@ public class GameState extends State{
 		if(h.getKeyManager().d && checkRight())
 			piecePosX++;
 		
+		//if(h.getKeyManager().q)
+		
+		//if(h.getKeyManager().e)
+			
+		
 	}
 	
 	public void tick() {
@@ -132,6 +137,7 @@ public class GameState extends State{
 		if((checkBottom()) || (piecePosY > (rows - currentPiece[0].length))) {
 			
 			b.addPiece(piecePosY, piecePosX, currentPiece);
+			b.tick();
 			currentPiece = nextPiece;
 			nextPiece = Piece.randomPiece();
 			
@@ -139,7 +145,7 @@ public class GameState extends State{
 			piecePosY = 0;
 		}
 		
-		if(counter >= 2) {
+		if(counter >= 5) {
 
 			piecePosY++;
 			counter = 0;

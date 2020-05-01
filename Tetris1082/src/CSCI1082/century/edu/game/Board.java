@@ -12,16 +12,32 @@ public class Board {
 	}
 	
 	public void checkRows() {
+		for(int i = 0; i < board.length; i++) {
+			int tmp = 0;
+			for(int j = 0; j < board[i].length; j++)
+				if(board[i][j] != 0)
+					tmp++;
+			if(tmp == board[i].length)
+				clearRow(i);
+		}
+	}
+	
+	private void dropBoard(int row) {
+		int[][] tmp = board;
 		
+		for(int i = row-1; i >= 0; i--)
+			for(int j = 0; j < board[i].length; j++)
+				board[i+1][j] = tmp[i][j];
 	}
 	
 	public int[][] getBoard(){
 		return board;
 	}
 	
-	public void clearRow(int row) {
+	private void clearRow(int row) {
 		for(int i = 0; i < board[row].length; i++)
 			board[row][i] = 0;
+		dropBoard(row);
 	}
 	
 	public void clearBoard() {
@@ -29,6 +45,7 @@ public class Board {
 	}
 	
 	public void tick() {
+		checkRows();
 	}
 
 	public int getColumns() {
