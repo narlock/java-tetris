@@ -7,6 +7,7 @@ import CSCI1082.century.edu.game.Board;
 import CSCI1082.century.edu.game.Piece;
 import CSCI1082.century.edu.game.ScoreCounter;
 import CSCI1082.century.edu.image.Assets;
+import CSCI1082.century.edu.utilities.Array2D;
 import CSCI1082.century.edu.utilities.Handler;
 
 public class GameState extends State{
@@ -113,13 +114,13 @@ public class GameState extends State{
 		//if(h.getKeyManager().w && piecePosY > 0)
 		//	piecePosY--;
 			
-		if(h.getKeyManager().a && (piecePosX > 0))
+		if(h.getKeyManager().a && checkLeft())
 			piecePosX--;
 		
 		//if()
 		//	piecePosY++;
 		
-		if(h.getKeyManager().d && piecePosX < columns - (currentPiece.length+1))
+		if(h.getKeyManager().d && checkRight())
 			piecePosX++;
 		
 	}
@@ -148,24 +149,45 @@ public class GameState extends State{
 	}
 	
 	private boolean checkLeft() {
+		if(piecePosX == 0)
+			return false;
 		
+		int counter = 0;
+		
+		for(int row = 0; row < currentPiece.length; row++)
+			if(Array2D.getLeftElement(currentPiece, row) != null
+			&& b.getElement(piecePosY + row,piecePosX + Array2D.getLeftElement(currentPiece, row)[1]-1) == 0)
+				counter++;
+		
+		if(counter == currentPiece.length)
+			return true;
+		return false;
 	}
 	
 	private boolean checkRight() {
+		if(piecePosX == 10 - currentPiece[0].length)
+			return false;
 		
+		int counter = 0;
+		
+		for(int row = 0; row < currentPiece.length; row++)
+			if(Array2D.getRightElement(currentPiece, row) != null
+			&& b.getElement(piecePosY + row, piecePosX + Array2D.getRightElement(currentPiece, row)[1]+1) == 0)
+				counter++;
+		
+		if(counter == currentPiece.length)
+			return true;
+		return false;
 	}
 	
 	private boolean checkBottom() {
 		if(piecePosY == 22)
 			return true;
-
-		for(int j = 0; j < currentPiece[0].length; j++) {
-			if(b.getElement(piecePosY+currentPiece.length, piecePosX+j) != 0) {
-				System.out.println("loop");
-				return true;
-			}
-		}
 		
+		for(int column = 0; column < currentPiece[0].length; column++)
+			if(Array2D.getBottomElement(currentPiece, column) != null 
+			&& b.getElement(piecePosY+Array2D.getBottomElement(currentPiece, column)[1] + 1,piecePosX+column) != 0)
+				return true;
 		return false;
 	}
 	
