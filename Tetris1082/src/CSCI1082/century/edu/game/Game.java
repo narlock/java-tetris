@@ -20,6 +20,7 @@ public class Game extends JPanel{
 	private Window window;
 	 private int width;
 	 private int height;
+	 private int count;
 	 
 	//Render
 	private Graphics g;

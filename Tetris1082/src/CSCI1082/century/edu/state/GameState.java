@@ -114,19 +114,22 @@ public class GameState extends State{
 		//if(h.getKeyManager().w && piecePosY > 0)
 		//	piecePosY--;
 			
-		if(h.getKeyManager().a && checkLeft())
+		if(h.getKeyManager().a && checkLeft(currentPiece))
 			piecePosX--;
 		
 		//if()
 		//	piecePosY++;
 		
-		if(h.getKeyManager().d && checkRight())
+		if(h.getKeyManager().d && checkRight(currentPiece))
 			piecePosX++;
 		
-		//if(h.getKeyManager().q)
+		if(h.getKeyManager().q && checkRight(Array2D.rotateCounterClockwise(currentPiece)) 
+				&& !checkBottom(Array2D.rotateCounterClockwise(currentPiece)))
+			currentPiece = Array2D.rotateCounterClockwise(currentPiece);
 		
-		//if(h.getKeyManager().e)
-			
+		if(h.getKeyManager().e && checkRight(Array2D.rotateCounterClockwise(currentPiece)) 
+				&& !checkBottom(Array2D.rotateCounterClockwise(currentPiece)))
+			currentPiece = Array2D.rotateClockwise(currentPiece);
 		
 	}
 	
@@ -134,7 +137,7 @@ public class GameState extends State{
 		
 		getInput();
 		
-		if((checkBottom()) || (piecePosY > (rows - currentPiece[0].length))) {
+		if((checkBottom(currentPiece)) || (piecePosY > (rows - currentPiece[0].length))) {
 			
 			b.addPiece(piecePosY, piecePosX, currentPiece);
 			b.tick();
@@ -154,8 +157,8 @@ public class GameState extends State{
 		counter++;
 	}
 	
-	private boolean checkLeft() {
-		if(piecePosX == 0)
+	private boolean checkLeft(int[][] currentPiece) {
+		if(piecePosX <= 0)
 			return false;
 		
 		int counter = 0;
@@ -170,8 +173,8 @@ public class GameState extends State{
 		return false;
 	}
 	
-	private boolean checkRight() {
-		if(piecePosX == 10 - currentPiece[0].length)
+	private boolean checkRight(int[][] currentPiece) {
+		if(piecePosX > 9 - currentPiece[0].length || piecePosY >= 24 - currentPiece.length)
 			return false;
 		
 		int counter = 0;
@@ -186,8 +189,8 @@ public class GameState extends State{
 		return false;
 	}
 	
-	private boolean checkBottom() {
-		if(piecePosY == 22)
+	private boolean checkBottom(int[][] currentPiece) {
+		if(piecePosY >= 24 - currentPiece.length)
 			return true;
 		
 		for(int column = 0; column < currentPiece[0].length; column++)
