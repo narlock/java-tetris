@@ -2,13 +2,15 @@ package CSCI1082.century.edu.state;
 
 import java.awt.Graphics;
 
+import javax.swing.*;
+
 import CSCI1082.century.edu.utilities.Handler;
 
-public class MenuState extends State{
+public class MenuState extends State {
 
-	public void render(Graphics g) {
-		
-	}
+	JPanel p = new JPanel();
+	JButton new_game = new JButton();
+	JButton exit_game = new JButton();
 	
 	public MenuState(Handler h) {
 		super(h);
