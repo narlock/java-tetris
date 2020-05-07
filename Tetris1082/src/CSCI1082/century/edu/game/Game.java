@@ -47,7 +47,7 @@ public class Game extends JPanel{
 
 		gameState = new GameState(h);
 		menuState = new MenuState(h);
-		State.setCurrentState(menuState);
+		State.setCurrentState(gameState);
 		
 		running = true;
 	}

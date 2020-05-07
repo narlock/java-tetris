@@ -6,20 +6,23 @@ import java.awt.event.KeyListener;
 public class KeyManager implements KeyListener{
 
 	private boolean[] keys;
-	public boolean w;
-	public boolean s;
+	public boolean enter;
+	public boolean esc;
 	public boolean a;
 	public boolean d;
 	public boolean q;
 	public boolean e;
 	
+	private int counter;
+	
 	public KeyManager(){
 		keys = new boolean[256];
+		counter = 0;
 	}
 	
 	public void tick() {
-		w=keys[KeyEvent.VK_W];
-		s=keys[KeyEvent.VK_S];
+		enter=keys[KeyEvent.VK_ENTER];
+		esc=keys[KeyEvent.VK_ESCAPE];
 		a=keys[KeyEvent.VK_A];
 		d=keys[KeyEvent.VK_D];
 		q=keys[KeyEvent.VK_Q];

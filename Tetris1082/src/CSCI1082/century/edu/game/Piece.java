@@ -19,7 +19,12 @@ public class Piece {
 	
 	public static final int[][] pieceI = {{6,6,6,6}};
 	
-	private final static int[][][] piece= {pieceL, pieceJ, pieceS, pieceZ, pieceT, pieceI};
+	public static final int[][] pieceB = {{7,7}
+										 ,{7,7}};
+	
+	public static final int[][] pieceP = {{1}};
+	
+	private final static int[][][] piece= {pieceL, pieceJ, pieceS, pieceZ, pieceT, pieceI, pieceB, pieceP};
 	
 	public static int[][] randomPiece() {
 		return piece[(int)(Math.random()*piece.length-1)];
