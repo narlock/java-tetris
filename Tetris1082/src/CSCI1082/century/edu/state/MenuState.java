@@ -4,27 +4,38 @@ import java.awt.Graphics;
 
 import javax.swing.*;
 
+import CSCI1082.century.edu.game.Game;
+import CSCI1082.century.edu.image.Assets;
 import CSCI1082.century.edu.utilities.Handler;
 
 public class MenuState extends State {
-
-	JPanel p = new JPanel();
-	JButton new_game = new JButton();
-	JButton exit_game = new JButton();
 	
 	public MenuState(Handler h) {
 		super(h);
-		
 	}
 
 	public void paint(Graphics g) {
-		// TODO Auto-generated method stub
+		//Draws the menu background
+		g.drawImage(Assets.menuBackground,0,0,null);
 		
 	}
 
-	@Override
+	private void getInput() {
+		//Enter button starts the game
+		if(h.getKeyManager().enter) {
+			System.out.println("Game Started!");
+			State.setCurrentState(h.getGame().gameState);
+		}
+		
+		//Exit button will close the program
+		if(h.getKeyManager().esc) {
+			System.exit(1);
+		}
+	}
+	
 	public void tick() {
-		// TODO Auto-generated method stub
+		//continuously ticks for key inputs
+		getInput();
 		
 	}
 }

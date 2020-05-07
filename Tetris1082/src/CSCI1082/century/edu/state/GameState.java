@@ -110,15 +110,9 @@ public class GameState extends State{
 	
 	private void getInput() {
 		//get keyboard input from handler.getKeyManager();
-		
-		//if(h.getKeyManager().w && piecePosY > 0)
-		//	piecePosY--;
 			
 		if(h.getKeyManager().a && checkLeft(currentPiece))
 			piecePosX--;
-		
-		//if()
-		//	piecePosY++;
 		
 		if(h.getKeyManager().d && checkRight(currentPiece))
 			piecePosX++;
@@ -131,12 +125,17 @@ public class GameState extends State{
 				&& !checkBottom(Array2D.rotateCounterClockwise(currentPiece)))
 			currentPiece = Array2D.rotateClockwise(currentPiece);
 		
+		//Exit button will close the program
+		if(h.getKeyManager().esc)
+			System.exit(1);
 	}
 	
 	public void tick() {
-		
+		//Continuously checks the following:
+		//input from user
 		getInput();
 		
+		//pieces and piece collisions
 		if((checkBottom(currentPiece)) || (piecePosY > (rows - currentPiece[0].length))) {
 			
 			b.addPiece(piecePosY, piecePosX, currentPiece);
@@ -156,6 +155,8 @@ public class GameState extends State{
 		
 		counter++;
 	}
+	
+	//Following methods check for positions of pieces
 	
 	private boolean checkLeft(int[][] currentPiece) {
 		if(piecePosX <= 0)

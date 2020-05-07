@@ -26,7 +26,7 @@ public class Game extends JPanel{
 	private Graphics g;
 	 
 	//States
-	private State gameState;
+	public State gameState;
 	private State menuState;
 	
 	//Inputs
@@ -47,7 +47,7 @@ public class Game extends JPanel{
 
 		gameState = new GameState(h);
 		menuState = new MenuState(h);
-		State.setCurrentState(gameState);
+		State.setCurrentState(menuState);
 		
 		running = true;
 	}
