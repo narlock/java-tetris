@@ -1,12 +1,11 @@
 # java-tetris
 Repository for the development of Java Tetris. This project is for our CSCI 1082 (Object-Oriented Programming) class.
-VIEW PROJECT PLAN: https://github.com/anthonynarlock/java-tetris/blob/master/plan.txt
+VIEW PROJECT PLAN: https://github.com/narlock/java-tetris/blob/master/ReadMes/plan.txt
 
 Java TETRIS 
-By: Anthony Narlock, Matthew Sherohman
-**************
-   README:
-**************
+Authors: Anthony Narlock, Matthew Sherohman
+
+## README:
 Java Tetris will feature a fully developed Java version of the popular game Tetris. The user will have access to modify starting level which changes the speed of the game depending on what starting level is selected. 
 
 The game itself will utilize two-dimensional arrays to hold values for the Tetris grid. When a piece object is placed, the value of the specific area in the array will change. And of course, when a "line clear" is displayed (A whole row in the array, or board, is filled with the pieces) the line will clear and score will be kept.
@@ -22,3 +21,4 @@ Java Tetris will also feature:
 ##
 
 We received 100% for this project.
+This project is currently discontinued.
